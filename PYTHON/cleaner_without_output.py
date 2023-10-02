@@ -22,9 +22,9 @@ def clear_tempfile(user):
          elif os.path.isdir(item_path):
             shutil.rmtree(item_path)
          else:
-                print(f"Skipped: {item_path} (Not a file or directory)\n")
+                user=user
       except Exception as e:
-            print(f"Error deleting {item_path}: {e}\n")
+            user=user
 
 #clearing prefetch
 def clear_prefetch(user):
@@ -37,16 +37,13 @@ def clear_prefetch(user):
             os.remove(item_path)
          elif os.path.isdir(item_path):
             shutil.rmtree(item_path)
-         else:
-                print(f"Skipped: {item_path} (Not a file or directory)\n")
+         
       except Exception as e:
-            print(f"Error deleting {item_path}: {e}\n")
+            user=user
 
 def cmd_propmt(user):                #@Louis047
     result = subprocess.run(["ipconfig","/flushdns"], capture_output=True, text=True)
-    if result.returncode == 0:
-       print(result.stdout)
-    else:
+    if result.returncode == 1:
        print("Error running ipconfig:", result.stderr)
      
 #clearing recent
